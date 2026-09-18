@@ -1,0 +1,47 @@
+{
+  "name": "chip",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CHIP — trade. power. build NVDA. A Robinhood Chain token whose trading fees power a semiconductor core; at 100% the system executes an NVDA Stock Token purchase and the reserve grows.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "next dev --port 3713",
+    "build": "next build",
+    "start": "next start --port 3713",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --import ./tests/register.mjs tests/*.test.ts",
+    "live-check": "node --import ./tests/register.mjs scripts/live-check.ts",
+    "capture": "node scripts/capture.mjs",
+    "signature": "node scripts/signature-strip.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "@tanstack/react-query": "^5.103.1",
+    "@walletconnect/ethereum-provider": "^2.25.0",
+    "framer-motion": "^13.4.0",
+    "lucide-react": "^1.47.0",
+    "next": "16.3.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "^0.186.0",
+    "viem": "^2.56.8",
+    "wagmi": "^3.7.7",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

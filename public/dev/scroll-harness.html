@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- Dev capture aid: the landing as a stack of same-origin iframes, each scrolled to its own offset,
+     so one headless screenshot shows the whole scroll story at viewport size. ?route=/reserve&step=900&n=6 -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>scroll harness</title>
+    <style>
+      body { margin: 0; background: #050606; }
+      iframe { display: block; width: 1440px; height: 900px; border: 0; border-bottom: 1px solid #1c2124; }
+    </style>
+  </head>
+  <body>
+    <script>
+      const q = new URLSearchParams(location.search);
+      const route = q.get("route") || "/";
+      const n = Number(q.get("n") || 6);
+      const step = Number(q.get("step") || 900);
+      const first = Number(q.get("first") || 0);
+      for (let i = 0; i < n; i++) {
+        const f = document.createElement("iframe");
+        f.src = `${route}${route.includes("?") ? "&" : "?"}intro=0`;
+        f.dataset.offset = String(first + i * step);
+        f.addEventListener("load", () => {
+          const w = f.contentWindow;
+          const go = () => {
+            w.document.documentElement.style.scrollBehavior = "auto";
+            w.scrollTo(0, Number(f.dataset.offset));
+          };
+          go();
+          setTimeout(go, 800);
+          setTimeout(go, 2500);
+        });
+        document.body.appendChild(f);
+      }
+    </script>
+  </body>
+</html>
